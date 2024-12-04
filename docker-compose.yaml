@@ -1,0 +1,17 @@
+services:
+  post:
+    image: postgres
+    container_name: mydb
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD : 1234
+      POSTGRES_USER : admin
+
+  backend:
+    build: .
+    container_name: mybackend
+    depends_on:
+      - post
+    ports:
+      - "8002:8000"
